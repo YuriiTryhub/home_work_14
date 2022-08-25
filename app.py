@@ -1,11 +1,15 @@
-from flask import Flask
+import sqlite3
+from flask import Flask, jsonify
+
+from dao.utils import get_movies_by_title
 
 app = Flask(__name__)
 
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+@app.route('/movie/<title>/')
+def view_by_title(title):
+    result = get_movies_by_title(title)
+    return jsonify(result)
 
 
 if __name__ == '__main__':

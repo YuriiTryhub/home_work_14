@@ -1,7 +1,6 @@
 import sqlite3
 
 
-
 def connection_to_db(sql):
     with sqlite3.connect('netflix.db') as connection:
         connection.row_factory = sqlite3.Row
@@ -18,6 +17,3 @@ def get_movies_by_title(title):
     result = connection_to_db(sql)
     for item in result:
         return dict(item)
-
-
-print(get_movies_by_title('#Selfie 69'))
