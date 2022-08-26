@@ -1,7 +1,7 @@
 import sqlite3
 from flask import Flask, jsonify
 
-from dao.utils import get_movies_by_title, get_value_in_range, get_sort_by_rating
+from dao.utils import get_movies_by_title, get_value_in_range, get_sort_by_rating, get_sort_by_genre
 
 app = Flask(__name__)
 
@@ -22,18 +22,21 @@ def view_by_children():
     result = get_sort_by_rating(rating)
     return jsonify(result)
 
-
 @app.route('/rating/children')
 def view_by_family():
     rating = ('G', '')
     result = get_sort_by_rating(rating)
     return jsonify(result)
 
-
 @app.route('/rating/adult')
 def view_by_adult():
     rating = ('NC-17', 'R')
     result = get_sort_by_rating(rating)
+    return jsonify(result)
+
+@app.route('/genre/<genre>')
+def view_by_genre(genre):
+    result = get_sort_by_genre(genre)
     return jsonify(result)
 
 if __name__ == '__main__':

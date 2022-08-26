@@ -33,9 +33,9 @@ def get_value_in_range(year_1, year_2):
 
 
 def get_sort_by_rating(r):
-
-    sql = f"""select title, rating, description from netflix
-              where rating in {r}
+    sql = f"""SELECT title, rating, description 
+                FROM netflix
+                WHERE rating in {r}
 
     """
     result = connection_to_db(sql)
@@ -44,3 +44,16 @@ def get_sort_by_rating(r):
         list_result.append(dict(item))
     return list_result
 
+def get_sort_by_genre(genre):
+    sql = f"""SELECT title, description, listed_in 
+                FROM netflix 
+                WHERE listed_in LIKE '%{genre}%'
+                ORDER by release_year DESC
+                LIMIT 10
+"""
+
+    result = connection_to_db(sql)
+    list_result = []
+    for item in result:
+        list_result.append(dict(item))
+    return list_result
