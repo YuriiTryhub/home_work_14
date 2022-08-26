@@ -1,7 +1,7 @@
 import sqlite3
 from flask import Flask, jsonify
 
-from dao.utils import get_movies_by_title, get_value_in_range
+from dao.utils import get_movies_by_title, get_value_in_range, get_sort_by_rating
 
 app = Flask(__name__)
 
