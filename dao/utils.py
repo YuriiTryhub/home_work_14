@@ -30,3 +30,17 @@ def get_value_in_range(year_1, year_2):
     for item in result:
         list_result.append(dict(item))
     return list_result
+
+
+def get_sort_by_rating(r):
+
+    sql = f"""select title, rating, description from netflix
+              where rating in {r}
+
+    """
+    result = connection_to_db(sql)
+    list_result = []
+    for item in result:
+        list_result.append(dict(item))
+    return list_result
+
