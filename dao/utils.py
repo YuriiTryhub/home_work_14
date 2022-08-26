@@ -78,3 +78,15 @@ def search_cast_by_actors(first_actor, second_actor):
     actors_seen_twice = {actor for actor in actors_all if actors_all.count(actor)>2} - {first_actor, second_actor}
     return actors_seen_twice
 
+
+def search_film_extended(type, release_year, genre):
+    '''функция расширенного поиска'''
+    extended_query = f"""
+			SELECT title, release_year, description FROM netflix
+			WHERE type LIKE '{type}' AND release_year = {release_year} 
+			AND listed_in LIKE '%{genre}%'
+			ORDER BY release_year DESC
+			"""
+    films = get_data_by_db(extended_query)
+    result = formated(films)
+    return result
