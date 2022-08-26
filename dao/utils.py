@@ -9,6 +9,7 @@ def connection_to_db(sql):
 
 
 def get_movies_by_title(title):
+    '''функция поиска по названию фильма'''
     sql = f"""SELECT title, country, release_year, listed_in as genre, description  
                 FROM netflix
                 WHERE title = '{title}'
